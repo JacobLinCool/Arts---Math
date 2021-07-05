@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>石頭</title>
+    </head>
+    <body>
+        <div id="controls"><button id="restart">重新開始</button> <input id="n" type="number" value="1" /> <button id="take">拿取</button></div>
+        <div id="status"></div>
+        <div id="game"></div>
+        <style>
+            * {
+                position: relative;
+                font-family: sans-serif;
+            }
+            html,
+            body {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #controls {
+                margin: 8px;
+                font-size: 1.2rem;
+            }
+
+            #status {
+                margin: 8px;
+                font-size: 1.2rem;
+            }
+
+            #game {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                width: 500px;
+                margin: 16px;
+            }
+            .stone {
+                border: gray solid 1px;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        <script src="stone_game.js"></script>
+        <script>
+            play();
+
+            document.querySelector("#restart").addEventListener("click", () => {
+                location.reload();
+            });
+
+            function play(n = 10 + Math.floor(Math.random() * 30)) {
+                const game = new Game(n, {
+                    init: (g) => {
+                        console.log(g);
+                        log("初始化完成");
+                    },
+                    first: (n) => {
+                        log(`初次拿取 ${n} 顆石頭`);
+                    },
+                    user: (g) => {
+                        log(`輪到玩家了`);
+                        update(g);
+                    },
+                    win: (g) => {
+                        log(`玩家獲勝`);
+                        update(g);
+                    },
+                    com_win: (g) => {
+                        log(`電腦獲勝`);
+                        update(g);
+                    },
+                });
+
+                document.querySelector("#game").innerHTML = "";
+                for (let i = 0; i < game.stones; i++) {
+                    let stone = document.createElement("div");
+                    stone.classList.add("stone");
+
+                    document.querySelector("#game").appendChild(stone);
+                }
+
+                document.querySelector("#take").addEventListener("click", () => {
+                    game.take(+document.querySelector("#n").value);
+                });
+
+                update(game);
+
+                function update(g) {
+                    let state = g.state.filter(Boolean);
+                    let stones = document.querySelectorAll(".stone");
+                    for (let i = 0; i < state.length && i < stones.length; i++) {
+                        stones[i].style.background = state[i] === 2 ? "#00d9ff" : "#ff375a";
+                    }
+                }
+
+                function log(t) {
+                    document.querySelector("#status").innerHTML = t;
+                }
+
+                return game;
+            }
+        </script>
+    </body>
+</html>
