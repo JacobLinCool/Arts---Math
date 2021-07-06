@@ -33,39 +33,43 @@ async function draw(cell = 500) {
         let previous = point.slice();
         switch (i % 4) {
             case 1:
-                ctx.fillStyle = "#F59E0B";
-                ctx.strokeStyle = "#F59E0B";
+                style = "#F59E0B";
+                prev_style = "#3B82F6";
                 point[1] -= SIZE * i;
                 break;
             case 2:
-                ctx.fillStyle = "#EF4444";
-                ctx.strokeStyle = "#EF4444";
+                style = "#EF4444";
+                prev_style = "#F59E0B";
                 point[0] += SIZE * i;
                 break;
             case 3:
-                ctx.fillStyle = "#10B981";
-                ctx.strokeStyle = "#10B981";
+                style = "#10B981";
+                prev_style = "#EF4444";
                 point[1] += SIZE * i;
                 break;
             case 0:
-                ctx.fillStyle = "#3B82F6";
-                ctx.strokeStyle = "#3B82F6";
+                style = "#3B82F6";
+                prev_style = "#10B981";
                 point[0] -= SIZE * i;
                 break;
         }
+        ctx.strokeStyle = style;
         ctx.beginPath();
         ctx.moveTo(...previous);
         ctx.lineTo(...point);
         ctx.stroke();
 
+        ctx.fillStyle = prev_style;
         ctx.beginPath();
         ctx.arc(...previous, 8, 0, 2 * c180);
         ctx.fill();
 
+        ctx.fillStyle = style;
         ctx.beginPath();
         ctx.arc(...point, 8, 0, 2 * c180);
         ctx.fill();
 
+        ctx.strokeStyle = style;
         ctx.beginPath();
         ctx.arc(...point, r, i * c90, (i + 1) * c90);
         ctx.stroke();
