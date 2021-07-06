@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>連分數</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div class="container">
+            <pre id="code"></pre>
+            <pre id="console"></pre>
+        </div>
+        <script src="./連分數.js"></script>
+        <script>
+            for (let i = 1; i <= 50; i++) {
+                document.querySelector("#console").innerHTML += `深度 ${String(i).padStart(2, " ")}: ${calc(i)}\n`;
+            }
+
+            fetch("./連分數.js")
+                .then((r) => r.text())
+                .then((code) => {
+                    document.querySelector("#code").innerHTML = code;
+                });
+        </script>
+    </body>
+</html>

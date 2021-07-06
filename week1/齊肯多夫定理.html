@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>齊肯多夫定理</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div class="container">
+            <input id="n" type="number" value="2021" /> <button id="calc">計算</button>
+            <pre id="console"></pre>
+            <pre id="code"></pre>
+        </div>
+        <style>
+            * {
+                position: relative;
+                font-family: sans-serif;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <script src="./齊肯多夫定理.js"></script>
+        <script>
+            document.querySelector("#calc").addEventListener("click", () => {
+                let input = +document.querySelector("#n").value;
+                document.querySelector("#console").innerHTML += `${input} = ${calc(input).join(" + ")}\n`;
+            });
+            document.querySelector("#n").addEventListener("keydown", (evt) => {
+                if (evt.keyCode === 13) document.querySelector("#calc").click();
+            });
+            document.querySelector("#calc").click();
+
+            fetch("./齊肯多夫定理.js")
+                .then((r) => r.text())
+                .then((code) => {
+                    document.querySelector("#code").innerHTML = code;
+                });
+        </script>
+    </body>
+</html>

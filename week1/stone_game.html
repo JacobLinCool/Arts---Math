@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>石頭</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div id="controls"><button id="restart">重新開始</button> <input id="n" type="number" value="1" /> <button id="take">拿取</button></div>
+        <div id="status"></div>
+        <div id="game"></div>
+        <style>
+            html,
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: auto;
+            }
+
+            #controls {
+                margin: 8px;
+                font-size: 1.2rem;
+            }
+
+            #status {
+                margin: 8px;
+                font-size: 1.2rem;
+            }
+
+            #game {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-gap: 1px;
+                width: 300px;
+                margin: 16px;
+            }
+            .stone {
+                border: 1px lightgray solid;
+                width: 60px;
+                height: 60px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                color: lightgray;
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+        </style>
+        <script src="stone_game.js"></script>
+        <script>
+            play();
+
+            document.querySelector("#restart").addEventListener("click", () => {
+                location.reload();
+            });
+            document.querySelector("#n").addEventListener("keydown", (evt) => {
+                if (evt.keyCode === 13) document.querySelector("#take").click();
+            });
+
+            function play(n = 10 + Math.floor(Math.random() * 30)) {
+                const game = new Game(n, {
+                    init: (g) => {
+                        console.log(g);
+                        log("初始化完成");
+                    },
+                    first: (n) => {
+                        log(`初次拿取 ${n} 顆石頭`);
+                    },
+                    user: (g) => {
+                        log(`輪到玩家了`);
+                        update(g);
+                    },
+                    win: (g) => {
+                        log(`玩家獲勝`);
+                        update(g);
+                    },
+                    com_win: (g) => {
+                        log(`電腦獲勝`);
+                        update(g);
+                    },
+                });
+
+                document.querySelector("#game").innerHTML = "";
+                for (let i = 0; i < game.stones; i++) {
+                    let stone = document.createElement("div");
+                    stone.classList.add("stone");
+                    stone.innerHTML = i + 1;
+
+                    document.querySelector("#game").appendChild(stone);
+                }
+
+                document.querySelector("#take").addEventListener("click", () => {
+                    game.take(+document.querySelector("#n").value);
+                });
+
+                update(game);
+
+                function update(g) {
+                    let state = g.state.filter(Boolean);
+                    let stones = document.querySelectorAll(".stone");
+                    for (let i = 0; i < state.length && i < stones.length; i++) {
+                        stones[i].style.background = state[i] === 2 ? "#2d72eb" : "#ff375a";
+                    }
+                }
+
+                function log(t) {
+                    document.querySelector("#status").innerHTML = t;
+                }
+
+                return game;
+            }
+        </script>
+    </body>
+</html>

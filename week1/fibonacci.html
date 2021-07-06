@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fibonacci</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div>
+            <pre id="console"></pre>
+            <pre id="code"></pre>
+        </div>
+        <script>
+            ((log) => {
+                console.log = (...arg) => {
+                    document.querySelector("#console").innerHTML += arg[0] + "\n";
+                    log(...arg);
+                };
+            })(console.log);
+        </script>
+        <script src="./fibonacci.js"></script>
+        <script>
+            fetch("./fibonacci.js")
+                .then((r) => r.text())
+                .then((code) => {
+                    document.querySelector("#code").innerHTML = code;
+                });
+        </script>
+    </body>
+</html>

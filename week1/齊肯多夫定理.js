@@ -1,4 +1,4 @@
-let input = 12;
+let input = 2021;
 console.log(`${input} = ${calc(input).join(" + ")}`);
 
 function calc(n) {
