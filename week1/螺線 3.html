@@ -3,25 +3,28 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fibonacci</title>
+        <title>螺線 3</title>
         <link rel="stylesheet" href="../global.css" />
     </head>
     <body>
         <div class="container">
-            <pre id="console"></pre>
+            <div id="wrap">
+                <canvas id="canvas" width="3000" height="3000"></canvas>
+            </div>
             <pre id="code"></pre>
         </div>
+        <style>
+            #canvas {
+                width: 100%;
+                border: 1px solid lightgray;
+            }
+            #wrap {
+                max-width: 800px;
+            }
+        </style>
+        <script src="螺線 3.js"></script>
         <script>
-            ((log) => {
-                console.log = (...arg) => {
-                    document.querySelector("#console").innerHTML += arg[0] + "\n";
-                    log(...arg);
-                };
-            })(console.log);
-        </script>
-        <script src="./fibonacci.js"></script>
-        <script>
-            fetch("./fibonacci.js")
+            fetch("./螺線 3.js")
                 .then((r) => r.text())
                 .then((code) => {
                     document.querySelector("#code").innerHTML = code;
