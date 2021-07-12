@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>三階魔方陣</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="desk">
+                <div id="box">
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                </div>
+            </div>
+        </div>
+        <style>
+            * {
+                position: relative;
+                font-family: sans-serif;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #wrap {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #desk {
+                transition: all 1s;
+            }
+            #box {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+
+                transition: all 1s;
+            }
+            .block {
+                top: 0;
+                left: 0;
+                border: 1px solid lightgray;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                font-size: 2rem;
+
+                transition: all 1s;
+            }
+            .rotate {
+                transform: rotate(45deg);
+            }
+        </style>
+        <script src="./三階魔方陣.js"></script>
+    </body>
+</html>

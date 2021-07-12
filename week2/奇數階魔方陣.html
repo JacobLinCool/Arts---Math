@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>奇數階魔方陣</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div id="controls">
+            <input id="n" type="number" value="7" step="2" /><button id="build">Build</button><span>魔方陣常數: <span id="constant"></span></span>
+        </div>
+        <div id="wrap">
+            <div id="desk">
+                <div id="box"></div>
+            </div>
+        </div>
+        <style>
+            * {
+                position: relative;
+                font-family: sans-serif;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #controls {
+                margin: 4px 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            #controls > * {
+                margin: 0 4px;
+            }
+            #wrap {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #desk {
+                transition: all 1s;
+            }
+            #box {
+                display: grid;
+
+                transition: all 1s;
+            }
+            .block {
+                top: 0;
+                left: 0;
+                border: 1px solid lightgray;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                transition: all 1s;
+            }
+            .rotate {
+                transform: rotate(45deg);
+            }
+        </style>
+        <script src="./奇數階魔方陣.js"></script>
+        <script>
+            document.querySelector("#build").addEventListener("click", () => {
+                build(+document.querySelector("#n").value);
+            });
+            document.querySelector("#build").click();
+        </script>
+    </body>
+</html>
