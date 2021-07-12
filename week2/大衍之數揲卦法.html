@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>大衍之數揲卦法</title>
+        <link rel="stylesheet" href="../global.css" />
+    </head>
+    <body>
+        <div id="controls">
+            <button id="start">開始</button>
+        </div>
+        <div id="wrap">
+            <p id="console"></p>
+            <div id="desk">
+                <div id="left" class="box">
+                    <h2 class="description">左邊</h2>
+                </div>
+                <div id="right" class="box">
+                    <h2 class="description">右邊</h2>
+                </div>
+                <div id="thrown" class="box">
+                    <h2 class="description">移除</h2>
+                </div>
+                <div id="more" class="box">
+                    <h2 class="description">未分類</h2>
+                </div>
+            </div>
+        </div>
+        <style>
+            * {
+                position: relative;
+                font-family: sans-serif;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #controls {
+                margin: 4px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #controls > * {
+                margin: 0 4px;
+            }
+            #wrap {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #desk {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin: 60px 0;
+
+                transition: all 1s;
+            }
+            .box {
+                height: 200px;
+                width: 200px;
+
+                border: 1px solid gray;
+            }
+            .description {
+                color: lightgray;
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: 4px;
+            }
+            .stick {
+                width: 3px;
+                height: 20px;
+                background: #000000;
+
+                position: absolute;
+                top: 200px;
+                left: 200px;
+            }
+        </style>
+        <script src="./大衍之數揲卦法.js"></script>
+        <script>
+            document.querySelector("#start").addEventListener("click", () => {
+                go();
+            });
+        </script>
+    </body>
+</html>
