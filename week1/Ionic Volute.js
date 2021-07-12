@@ -1,6 +1,6 @@
 draw();
 
-async function draw(cell = 500) {
+async function draw(cell = 200) {
     let canvas = document.querySelector("#canvas");
     let WIDTH = canvas.width,
         HEIGHT = canvas.height;
