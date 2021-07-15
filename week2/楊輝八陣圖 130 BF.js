@@ -1,11 +1,11 @@
 draw();
 
 async function draw() {
-    let canvas = document.querySelector("#canvas");
-    let WIDTH = canvas.width,
+    const canvas = document.querySelector("#canvas");
+    const WIDTH = canvas.width,
         HEIGHT = canvas.height;
 
-    let ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
     const SAFE_ZONE = WIDTH / 3;
     const BIG_R = (SAFE_ZONE * 0.7) / 2;
     const SMALL_R = (SAFE_ZONE * 0.2) / 2;
