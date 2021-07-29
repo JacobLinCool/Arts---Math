@@ -25,6 +25,7 @@ pre {
 
 .container {
     margin: 16px;
+    width: calc(100% - 32px);
 }
 
 a,
