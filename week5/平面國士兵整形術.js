@@ -13,7 +13,9 @@ async function draw(deg = 20) {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.lineWidth = 0.2 * L;
-
+    
+    drawTriangle();
+    await sleep(1000);
     while (deg < 60) {
         drawTriangle();
         deg += 0.1;

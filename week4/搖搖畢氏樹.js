@@ -1,4 +1,4 @@
-window.speed = 1;
+window.speed = 0.8;
 
 async function draw(magic = 45) {
     const canvas = document.querySelector("#canvas");
